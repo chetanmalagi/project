@@ -13,13 +13,13 @@ import {
 
 function App() {
   const [mode, setMode] = useState('light');
-  const [alert, setAlert] = useState(null);
+  const [alert, setAlert] = useState(null);    //for alert msg importing function 
 
   const showAlert = (message, type) => {
     setAlert({ msg: message, type: type });
     setTimeout(() => {
       setAlert(null);
-    }, 2000);
+    }, 2000);      // for alert message timing 
   };
 
   const toggleMode = () => {
@@ -28,7 +28,7 @@ function App() {
     document.body.style.backgroundColor = newMode === 'dark' ? '#042743' : 'white';
     showAlert(`${newMode.charAt(0).toUpperCase() + newMode.slice(1)} mode has been enabled`, "success");
     document.title = `Alphaplay - ${newMode.charAt(0).toUpperCase() + newMode.slice(1)} mode`;
-  };
+  };                 // for toggle mode
 
   return (
     <>
@@ -37,7 +37,7 @@ function App() {
         <Alert alert={alert} />
         <div className="container my-3">
           <Routes>
-            <Route exact path="/about" element={<About />} />
+            <Route exact path="/about" element={<About mode={mode} />} />
             <Route exact path="/" element={<Textform showAlert={showAlert} heading="Enter the text to analyze below" mode={mode} />} />
           </Routes>
         </div>
